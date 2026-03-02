@@ -3,75 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сюрприз!</title>
+    <title>С 8 марта!</title>
     <style>
-        /* Простые стили, чтобы страница выглядела аккуратно */
-        body {
+        /* Общие сбросы и шрифт */
+        * {
             margin: 0;
-            background-color: #000; /* Черный фон, как на киноэкране */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #fdeff2 0%, #f8d7e3 100%);
+            /* Если хотите использовать фоновое изображение, закомментируйте строку выше и раскомментируйте следующую:
+            background: url('https://example.com/flowers.jpg') center/cover no-repeat; */
+            position: relative;
+            overflow-x: hidden;
         }
-        .video-container {
+
+        /* Анимированные сердечки и цветочки на фоне */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 800px; /* Ограничиваем ширину на больших экранах */
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><path fill="%23ff99aa" d="M50 30 L60 40 L70 30 Q75 20 65 15 Q55 10 50 20 Q45 10 35 15 Q25 20 30 30 L40 40 Z"/><circle cx="70" cy="70" r="8" fill="%23ffccdd"/><circle cx="30" cy="80" r="6" fill="%23ff99bb"/><path fill="%23ffb6c1" d="M20 30 Q15 25 10 30 Q5 35 10 40 Q15 45 20 40 Q25 35 20 30Z"/></svg>') repeat;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 20s infinite linear;
         }
+
+        @keyframes float {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Основной контейнер с поздравлением и плеером */
+        .wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Праздничный заголовок */
+        .greeting {
+            font-size: clamp(28px, 6vw, 48px);
+            font-weight: 700;
+            color: #6d3b5e;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            background: rgba(255, 240, 245, 0.5);
+            backdrop-filter: blur(2px);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 150, 180, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Контейнер для видео */
+        .video-container {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), 0 0 0 2px #fff3f8 inset, 0 0 0 4px #ffd9e6 inset;
+            border: 1px solid rgba(255, 200, 220, 0.7);
+        }
+
         video {
             display: block;
             width: 100%;
             height: auto;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(109, 59, 94, 0.2);
+            background-color: #1a0f14; /* на случай, если видео не загрузится */
+        }
+
+        /* Маленькие украшения под видео */
+        .footer-note {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #8b5f7c;
+            font-style: italic;
+            text-shadow: 0 1px 2px white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .footer-note span {
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px #ffa5c3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 600px) {
+            .video-container { padding: 8px; border-radius: 24px; }
+            video { border-radius: 18px; }
+            .greeting { padding: 8px 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <!-- Здесь будет наш видеоплеер -->
-        <video id="player" controls autoplay playsinline>
-            <!-- Браузер сам подставит сюда нужный источник -->
-            Ваш браузер не поддерживает тег video.
-        </video>
+    <div class="wrapper">
+        <h1 class="greeting">🌷 С 8 марта, дорогие Дамы 🌷</h1>
+
+        <div class="video-container">
+            <video id="player" controls autoplay playsinline>
+                Ваш браузер не поддерживает тег video.
+            </video>
+        </div>
+
+        <div class="footer-note">
+            <span>🌸</span> С любовью! <span>🌸</span>
+        </div>
     </div>
 
     <script>
-        // ----- ЭТО ГЛАВНАЯ ЧАСТЬ: СПИСОК ВАШИХ ВИДЕО -----
-        // Вставьте сюда ваши прямые ссылки из Google Drive!
-        const videoSources = [
-            "Testy.mp4",
-            "mey.mp4" // Замените на вашу первую ссылку
-                        // Если видео больше, добавьте новые строки через запятую
-        ];
+        // Массив с видео — уже ваши файлы
+        const videoSources = ["Testy.mp4", "mey.mp4"];
 
-        // ----- КОД ДЛЯ СЛУЧАЙНОГО ВЫБОРА -----
-        // Функция, которая выбирает случайный элемент из массива
-        function getRandomVideo() {
-            const randomIndex = Math.floor(Math.random() * videoSources.length);
-            return videoSources[randomIndex];
-        }
+        // Случайный выбор
+        const randomIndex = Math.floor(Math.random() * videoSources.length);
+        const videoElement = document.getElementById('player');
+        videoElement.src = videoSources[randomIndex];
 
-        // Ждем, когда загрузится страница
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoElement = document.getElementById('player');
-            
-            // Получаем случайную ссылку на видео
-            const randomVideoUrl = getRandomVideo();
-            
-            // Устанавливаем эту ссылку как источник для нашего плеера
-            videoElement.src = randomVideoUrl;
-            
-            // Загружаем и пытаемся воспроизвести видео
-            videoElement.load(); // Загружаем выбранное видео
-            videoElement.play().catch(error => {
-                // Автовоспроизведение может быть заблокировано браузером
-                console.log("Автовоспроизведение не сработало:", error);
-            });
-        });
+        // Пытаемся автоматически запустить (браузер может заблокировать)
+        videoElement.load();
+        videoElement.play().catch(e => console.log("Автозапуск не удался:", e));
     </script>
 </body>
-
 </html>
-
-
