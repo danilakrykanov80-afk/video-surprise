@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сюрприз!</title>
+    <style>
+        /* Простые стили, чтобы страница выглядела аккуратно */
+        body {
+            margin: 0;
+            background-color: #000; /* Черный фон, как на киноэкране */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 800px; /* Ограничиваем ширину на больших экранах */
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        video {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Здесь будет наш видеоплеер -->
+        <video id="player" controls autoplay playsinline>
+            <!-- Браузер сам подставит сюда нужный источник -->
+            Ваш браузер не поддерживает тег video.
+        </video>
+    </div>
+
+    <script>
+        // ----- ЭТО ГЛАВНАЯ ЧАСТЬ: СПИСОК ВАШИХ ВИДЕО -----
+        // Вставьте сюда ваши прямые ссылки из Google Drive!
+        const videoSources = [
+            "https://drive.google.com/uc?export=download&id=1DKENFqxTeUGqRMXfcIkHwFE3eQDwKdvH", // Замените на вашу первую ссылку
+                        // Если видео больше, добавьте новые строки через запятую
+        ];
+
+        // ----- КОД ДЛЯ СЛУЧАЙНОГО ВЫБОРА -----
+        // Функция, которая выбирает случайный элемент из массива
+        function getRandomVideo() {
+            const randomIndex = Math.floor(Math.random() * videoSources.length);
+            return videoSources[randomIndex];
+        }
+
+        // Ждем, когда загрузится страница
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoElement = document.getElementById('player');
+            
+            // Получаем случайную ссылку на видео
+            const randomVideoUrl = getRandomVideo();
+            
+            // Устанавливаем эту ссылку как источник для нашего плеера
+            videoElement.src = randomVideoUrl;
+            
+            // Загружаем и пытаемся воспроизвести видео
+            videoElement.load(); // Загружаем выбранное видео
+            videoElement.play().catch(error => {
+                // Автовоспроизведение может быть заблокировано браузером
+                console.log("Автовоспроизведение не сработало:", error);
+            });
+        });
+    </script>
+</body>
+</html>
