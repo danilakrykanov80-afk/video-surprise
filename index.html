@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>С 8 марта!</title>
     <style>
-        /* Общие сбросы и шрифт */
         * {
             margin: 0;
             padding: 0;
@@ -18,14 +17,12 @@
             align-items: center;
             justify-content: center;
             font-family: 'Segoe UI', 'Arial', sans-serif;
-            background: linear-gradient(145deg, #fdeff2 0%, #f8d7e3 100%);
-            /* Если хотите использовать фоновое изображение, закомментируйте строку выше и раскомментируйте следующую:
-            background: url('https://example.com/flowers.jpg') center/cover no-repeat; */
+            background: linear-gradient(145deg, #f9e3e8 0%, #f5d0db 100%);
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Анимированные сердечки и цветочки на фоне */
+        /* ---- Ровные сердечки (паттерн) ---- */
         body::before {
             content: '';
             position: absolute;
@@ -33,10 +30,28 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><path fill="%23ff99aa" d="M50 30 L60 40 L70 30 Q75 20 65 15 Q55 10 50 20 Q45 10 35 15 Q25 20 30 30 L40 40 Z"/><circle cx="70" cy="70" r="8" fill="%23ffccdd"/><circle cx="30" cy="80" r="6" fill="%23ff99bb"/><path fill="%23ffb6c1" d="M20 30 Q15 25 10 30 Q5 35 10 40 Q15 45 20 40 Q25 35 20 30Z"/></svg>') repeat;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" opacity="0.15"><path fill="%23ff99aa" d="M20 8 C 12 0, 0 6, 0 16 C 0 26, 20 36, 20 36 C 20 36, 40 26, 40 16 C 40 6, 28 0, 20 8 Z" /></svg>');
+            background-repeat: repeat;
+            background-size: 60px 60px;
             pointer-events: none;
             z-index: 0;
-            animation: float 20s infinite linear;
+            animation: float 30s infinite linear;
+        }
+
+        /* ---- Горы вдалеке (полупрозрачный силуэт) ---- */
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" preserveAspectRatio="none" opacity="0.2"><path fill="%23997b8c" d="M0,150 L150,50 L300,130 L450,20 L600,100 L750,40 L900,110 L1050,10 L1200,80 L1200,200 L0,200 Z" /></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            pointer-events: none;
+            z-index: 1;
         }
 
         @keyframes float {
@@ -44,7 +59,7 @@
             100% { background-position: 100px 100px; }
         }
 
-        /* Основной контейнер с поздравлением и плеером */
+        /* Основной контейнер */
         .wrapper {
             position: relative;
             z-index: 10;
@@ -54,27 +69,27 @@
             text-align: center;
         }
 
-        /* Праздничный заголовок */
+        /* Заголовок */
         .greeting {
             font-size: clamp(28px, 6vw, 48px);
             font-weight: 700;
             color: #6d3b5e;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
             margin-bottom: 20px;
             line-height: 1.2;
             letter-spacing: 1px;
-            background: rgba(255, 240, 245, 0.5);
+            background: rgba(255, 240, 245, 0.6);
             backdrop-filter: blur(2px);
             display: inline-block;
             padding: 10px 30px;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(255, 150, 180, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
 
-        /* Контейнер для видео */
+        /* Контейнер видео */
         .video-container {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(4px);
             border-radius: 40px;
             padding: 15px;
@@ -88,10 +103,10 @@
             height: auto;
             border-radius: 30px;
             box-shadow: 0 10px 25px rgba(109, 59, 94, 0.2);
-            background-color: #1a0f14; /* на случай, если видео не загрузится */
+            background-color: #1a0f14;
         }
 
-        /* Маленькие украшения под видео */
+        /* Подпись */
         .footer-note {
             margin-top: 25px;
             font-size: 18px;
@@ -115,7 +130,6 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Адаптация для мобильных */
         @media (max-width: 600px) {
             .video-container { padding: 8px; border-radius: 24px; }
             video { border-radius: 18px; }
@@ -134,20 +148,15 @@
         </div>
 
         <div class="footer-note">
-            <span>🌸</span> С любовью! <span>🌸</span>
+            <span>🌸</span> С любовью, ваши походники <span>🌸</span>
         </div>
     </div>
 
     <script>
-        // Массив с видео — уже ваши файлы
         const videoSources = ["Testy.mp4", "mey.mp4"];
-
-        // Случайный выбор
         const randomIndex = Math.floor(Math.random() * videoSources.length);
         const videoElement = document.getElementById('player');
         videoElement.src = videoSources[randomIndex];
-
-        // Пытаемся автоматически запустить (браузер может заблокировать)
         videoElement.load();
         videoElement.play().catch(e => console.log("Автозапуск не удался:", e));
     </script>
