@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>С 8 марта!</title>
     <style>
         * {
@@ -20,9 +20,10 @@
             background: linear-gradient(145deg, #f9e3e8 0%, #f5d0db 100%);
             position: relative;
             overflow-x: hidden;
+            padding: 10px;
         }
 
-        /* ---- Ровные сердечки (паттерн) ---- */
+        /* Ровные сердечки */
         body::before {
             content: '';
             position: absolute;
@@ -32,20 +33,20 @@
             height: 100%;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" opacity="0.15"><path fill="%23ff99aa" d="M20 8 C 12 0, 0 6, 0 16 C 0 26, 20 36, 20 36 C 20 36, 40 26, 40 16 C 40 6, 28 0, 20 8 Z" /></svg>');
             background-repeat: repeat;
-            background-size: 120px 120px;
+            background-size: 60px 60px;
             pointer-events: none;
             z-index: 0;
             animation: float 30s infinite linear;
         }
 
-        /* ---- Горы вдалеке (полупрозрачный силуэт) ---- */
+        /* Горы вдалеке */
         body::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 130px;
+            height: 120px;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" preserveAspectRatio="none" opacity="0.2"><path fill="%23997b8c" d="M0,150 L150,50 L300,130 L450,20 L600,100 L750,40 L900,110 L1050,10 L1200,80 L1200,200 L0,200 Z" /></svg>');
             background-size: cover;
             background-repeat: no-repeat;
@@ -64,36 +65,65 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 900px;
-            padding: 20px;
+            max-width: 500px; /* Ограничиваем для телефонов, но на планшетах тоже норм */
+            padding: 15px 10px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Контейнер для логотипа */
+        .logo-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        /* Логотип — адаптивный и чёткий */
+        .logo {
+            max-width: 180px; /* На телефоне будет хорошо */
+            width: auto;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(2px);
+            padding: 8px 15px;
         }
 
         /* Заголовок */
         .greeting {
-            font-size: clamp(28px, 6vw, 48px);
+            font-size: clamp(22px, 7vw, 36px); /* Адаптивный размер */
             font-weight: 700;
             color: #6d3b5e;
             text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
             line-height: 1.2;
-            letter-spacing: 1px;
-            background: rgba(255, 240, 245, 0.6);
+            letter-spacing: 0.5px;
+            background: rgba(255, 240, 245, 0.7);
             backdrop-filter: blur(2px);
             display: inline-block;
-            padding: 10px 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(255, 150, 180, 0.3);
+            padding: 8px 20px;
+            border-radius: 40px;
+            box-shadow: 0 4px 12px rgba(255, 150, 180, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.7);
+            width: fit-content;
+            margin: 0 auto;
         }
 
         /* Контейнер видео */
         .video-container {
+            width: 100%;
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(4px);
-            border-radius: 40px;
-            padding: 15px;
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), 0 0 0 2px #fff3f8 inset, 0 0 0 4px #ffd9e6 inset;
+            border-radius: 30px;
+            padding: 12px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1), 0 0 0 2px #fff3f8 inset, 0 0 0 4px #ffd9e6 inset;
             border: 1px solid rgba(255, 200, 220, 0.7);
         }
 
@@ -101,15 +131,15 @@
             display: block;
             width: 100%;
             height: auto;
-            border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(109, 59, 94, 0.2);
+            border-radius: 22px;
+            box-shadow: 0 8px 20px rgba(109, 59, 94, 0.25);
             background-color: #1a0f14;
         }
 
         /* Подпись */
         .footer-note {
-            margin-top: 25px;
-            font-size: 18px;
+            margin-top: 5px;
+            font-size: 16px;
             color: #8b5f7c;
             font-style: italic;
             text-shadow: 0 1px 2px white;
@@ -117,10 +147,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            flex-wrap: wrap;
+            padding: 0 10px;
         }
 
         .footer-note span {
-            font-size: 24px;
+            font-size: 22px;
             filter: drop-shadow(0 2px 4px #ffa5c3);
             animation: pulse 2s infinite;
         }
@@ -130,30 +162,72 @@
             50% { transform: scale(1.1); }
         }
 
-        @media (max-width: 600px) {
-            .video-container { padding: 8px; border-radius: 24px; }
-            video { border-radius: 18px; }
-            .greeting { padding: 8px 20px; }
+        /* Специальные улучшения для маленьких экранов */
+        @media (max-width: 480px) {
+            .wrapper {
+                padding: 10px 5px;
+                gap: 12px;
+            }
+            .logo {
+                max-width: 140px;
+                max-height: 70px;
+                padding: 6px 12px;
+            }
+            .video-container {
+                padding: 8px;
+                border-radius: 24px;
+            }
+            video {
+                border-radius: 18px;
+            }
+            .greeting {
+                padding: 6px 16px;
+                font-size: clamp(20px, 6vw, 30px);
+            }
+            .footer-note {
+                font-size: 14px;
+            }
+        }
+
+        /* Для очень маленьких (старые iPhone) */
+        @media (max-width: 360px) {
+            .logo {
+                max-width: 120px;
+                max-height: 60px;
+            }
+            .greeting {
+                font-size: 18px;
+                padding: 5px 12px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
+        <!-- ЛОГОТИП (PNG) -->
+        <div class="logo-container">
+            <img src="logo.png" alt="Логотип" class="logo">
+        </div>
+
+        <!-- ЗАГОЛОВОК -->
         <h1 class="greeting">🌷 С 8 марта, дорогие Дамы 🌷</h1>
 
+        <!-- ВИДЕО -->
         <div class="video-container">
             <video id="player" controls autoplay playsinline>
                 Ваш браузер не поддерживает тег video.
             </video>
         </div>
 
+        <!-- ПОДПИСЬ -->
         <div class="footer-note">
-            <span>🌸</span> С любовью! <span>🌸</span>
+            <span>🌸</span> С любовью, ваши походники <span>🌸</span>
         </div>
     </div>
 
     <script>
-        const videoSources = ["Testy.mp4", "mey.mp4", "Odin.mp4"];
+        // Видеофайлы (имена ваших файлов)
+        const videoSources = ["Testy.mp4", "mey.mp4"];
         const randomIndex = Math.floor(Math.random() * videoSources.length);
         const videoElement = document.getElementById('player');
         videoElement.src = videoSources[randomIndex];
@@ -162,6 +236,3 @@
     </script>
 </body>
 </html>
-
-
-
