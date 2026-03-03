@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>С 8 марта!</title>
+    
+    <!-- ПОДКЛЮЧАЕМ КРАСИВЫЕ ШРИФТЫ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -16,7 +22,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-family: 'Nunito Sans', 'Segoe UI', Arial, sans-serif; /* Запасной вариант */
             background: linear-gradient(145deg, #f9e3e8 0%, #f5d0db 100%);
             position: relative;
             overflow-x: hidden;
@@ -65,7 +71,7 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 500px; /* Ограничиваем для телефонов, но на планшетах тоже норм */
+            max-width: 500px;
             padding: 15px 10px;
             text-align: center;
             display: flex;
@@ -83,9 +89,9 @@
             margin-bottom: 5px;
         }
 
-        /* Логотип — адаптивный и чёткий */
+        /* Логотип */
         .logo {
-            max-width: 180px; /* На телефоне будет хорошо */
+            max-width: 180px;
             width: auto;
             height: auto;
             max-height: 100px;
@@ -97,10 +103,11 @@
             padding: 8px 15px;
         }
 
-        /* Заголовок */
+        /* ЗАГОЛОВОК — теперь Playfair Display */
         .greeting {
-            font-size: clamp(22px, 7vw, 36px); /* Адаптивный размер */
+            font-size: clamp(22px, 7vw, 36px);
             font-weight: 700;
+            font-family: 'Playfair Display', 'Times New Roman', serif;
             color: #6d3b5e;
             text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
             line-height: 1.2;
@@ -136,12 +143,12 @@
             background-color: #1a0f14;
         }
 
-        /* Подпись */
+        /* ПОДПИСЬ — теперь Caveat (рукописный) */
         .footer-note {
             margin-top: 5px;
-            font-size: 16px;
+            font-size: 20px;
+            font-family: 'Caveat', cursive;
             color: #8b5f7c;
-            font-style: italic;
             text-shadow: 0 1px 2px white;
             display: flex;
             align-items: center;
@@ -152,7 +159,7 @@
         }
 
         .footer-note span {
-            font-size: 22px;
+            font-size: 24px;
             filter: drop-shadow(0 2px 4px #ffa5c3);
             animation: pulse 2s infinite;
         }
@@ -162,7 +169,7 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Специальные улучшения для маленьких экранов */
+        /* Адаптация для маленьких экранов */
         @media (max-width: 480px) {
             .wrapper {
                 padding: 10px 5px;
@@ -185,26 +192,14 @@
                 font-size: clamp(20px, 6vw, 30px);
             }
             .footer-note {
-                font-size: 14px;
-            }
-        }
-
-        /* Для очень маленьких (старые iPhone) */
-        @media (max-width: 360px) {
-            .logo {
-                max-width: 120px;
-                max-height: 60px;
-            }
-            .greeting {
                 font-size: 18px;
-                padding: 5px 12px;
             }
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <!-- ЛОГОТИП (PNG) -->
+        <!-- ЛОГОТИП -->
         <div class="logo-container">
             <img src="logo.png" alt="Логотип" class="logo">
         </div>
@@ -219,14 +214,13 @@
             </video>
         </div>
 
-        <!-- ПОДПИСЬ -->
+        <!-- ПОДПИСЬ (теперь красивым рукописным) -->
         <div class="footer-note">
             <span>🌸</span> С любовью! <span>🌸</span>
         </div>
     </div>
 
     <script>
-        // Видеофайлы (имена ваших файлов)
         const videoSources = ["Video1.mp4", "Video2.mp4", "Video3.mp4"];
         const randomIndex = Math.floor(Math.random() * videoSources.length);
         const videoElement = document.getElementById('player');
@@ -236,5 +230,3 @@
     </script>
 </body>
 </html>
-
-
