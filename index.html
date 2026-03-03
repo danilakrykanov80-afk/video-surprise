@@ -150,31 +150,6 @@
             padding: 8px 15px;
         }
 
-        /* КОНТЕЙНЕР ДЛЯ ЗАГОЛОВКА С ВИНЬЕТКОЙ */
-        .title-wrapper {
-            position: relative;
-            width: fit-content;
-            margin: 0 auto;
-            display: inline-block;
-        }
-
-        /* ВИНЬЕТКА ВОКРУГ ЗАГОЛОВКА */
-        .title-vignette {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 130%;
-            height: 170%;
-            background-image: url('vignette.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0.8;
-        }
-
         /* ЗАГОЛОВОК — Good Vibes Pro */
         .greeting {
             font-size: clamp(20px, 5vw, 32px);
@@ -282,10 +257,6 @@
                 max-height: 70px;
                 padding: 6px 12px;
             }
-            .title-vignette {
-                width: 140%;
-                height: 180%;
-            }
             .greeting {
                 font-size: 18px;
                 padding: 6px 18px;
@@ -337,12 +308,8 @@
             <img src="logo.png" alt="Логотип" class="logo">
         </div>
 
-        <!-- ЗАГОЛОВОК С ВИНЬЕТКОЙ -->
-        <div class="title-wrapper">
-            <!-- Виньетка вокруг заголовка -->
-            <div class="title-vignette"></div>
-            <h1 class="greeting">С 8 марта, дорогие Дамы</h1>
-        </div>
+        <!-- ЗАГОЛОВОК -->
+        <h1 class="greeting">С 8 марта, дорогие Дамы</h1>
 
         <!-- ВИДЕО -->
         <div class="video-container">
